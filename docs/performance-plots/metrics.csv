@@ -3,3 +3,7 @@ n,time_ns,comparisons,allocations,algorithm
 1000,59700,999,0,Kadane
 10000,347700,9999,0,Kadane
 100000,3168600,99999,0,Kadane
+100,18600,99,0,Kadane
+1000,118100,999,0,Kadane
+10000,464300,9999,0,Kadane
+100000,8024500,99999,0,Kadane

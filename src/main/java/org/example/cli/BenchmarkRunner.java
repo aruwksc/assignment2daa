@@ -1,7 +1,7 @@
 package com.example.cli;
 
 import com.example.Kadane;
-import com.example.metrics.PerformanceTracker;
+import org.example.metrics.PerformanceTracker;
 
 import java.io.IOException;
 import java.nio.file.*;

@@ -1,4 +1,4 @@
-package com.example.metrics;
+package org.example.metrics;
 
 import java.io.*;
 import java.nio.file.*;

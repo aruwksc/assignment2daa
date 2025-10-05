@@ -1,6 +1,6 @@
 package com.example;
 
-import com.example.metrics.PerformanceTracker;
+import org.example.metrics.PerformanceTracker;
 
 public class Kadane {
 
