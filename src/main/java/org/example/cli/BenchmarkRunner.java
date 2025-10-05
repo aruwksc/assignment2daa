@@ -1,6 +1,6 @@
-package com.example.cli;
+package org.example.cli;
 
-import com.example.Kadane;
+import org.example.Kadane;
 import org.example.metrics.PerformanceTracker;
 
 import java.io.IOException;
@@ -10,13 +10,27 @@ import java.util.Random;
 public class BenchmarkRunner {
 
     public static void main(String[] args) throws IOException {
-        int[] sizes = {100, 1000, 10000, 100000};
-        Path output = Paths.get("docs/performance-plots/metrics.csv");
 
-        // создаём директории при необходимости
-        Files.createDirectories(output.getParent());
+        int[] sizes;
 
-        Random rnd = new Random();
+        if (args.length > 0) {
+            sizes = new int[args.length];
+            for (int i = 0; i < args.length; i++) {
+                try {
+                    sizes[i] = Integer.parseInt(args[i]);
+                } catch (NumberFormatException e) {
+                    System.err.println("Invalid input: " + args[i]);
+                    return;
+                }
+            }
+        } else {
+            sizes = new int[]{100, 1000, 10000, 100000};
+        }
+
+
+        Path outputPath = Paths.get("docs/performance-plots/metrics.csv");
+        Files.createDirectories(outputPath.getParent());
+        Random rnd = new Random(42);
 
         for (int n : sizes) {
             int[] arr = new int[n];
@@ -26,9 +40,9 @@ public class BenchmarkRunner {
 
             PerformanceTracker tracker = new PerformanceTracker();
             int result = Kadane.findMaxSum(arr, tracker);
-            System.out.println("n = " + n + ", maxSum = " + result + ", time = " + tracker.getTimeNs() + "ns");
+            System.out.printf("n = %-7d | maxSum = %-10d | time = %dns\n", n, result, tracker.getTimeNs());
 
-            tracker.toCSV(output, n, "Kadane");
+            tracker.toCSV(outputPath, n, "Kadane");
         }
     }
 }
