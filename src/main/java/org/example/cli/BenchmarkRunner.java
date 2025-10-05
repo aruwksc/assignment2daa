@@ -39,7 +39,6 @@ public class BenchmarkRunner {
 
             PerformanceTracker tracker = new PerformanceTracker();
 
-            // ⚠️ используем новый метод
             Kadane.Result res = Kadane.findMaxSubarray(arr, tracker);
 
             System.out.printf("n = %-7d | maxSum = %-10d | range = [%d, %d] | time = %dns\n",

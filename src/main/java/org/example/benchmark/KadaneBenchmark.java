@@ -30,7 +30,6 @@ public class KadaneBenchmark {
 
     @Benchmark
     public int benchmarkKadane() {
-
         Kadane.Result result = Kadane.findMaxSubarray(array, tracker);
         return result.maxSum;
     }
