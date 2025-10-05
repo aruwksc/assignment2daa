@@ -27,7 +27,6 @@ public class BenchmarkRunner {
             sizes = new int[]{100, 1000, 10000, 100000};
         }
 
-
         Path outputPath = Paths.get("docs/performance-plots/metrics.csv");
         Files.createDirectories(outputPath.getParent());
         Random rnd = new Random(42);
@@ -39,8 +38,12 @@ public class BenchmarkRunner {
             }
 
             PerformanceTracker tracker = new PerformanceTracker();
-            int result = Kadane.findMaxSum(arr, tracker);
-            System.out.printf("n = %-7d | maxSum = %-10d | time = %dns\n", n, result, tracker.getTimeNs());
+
+            // ⚠️ используем новый метод
+            Kadane.Result res = Kadane.findMaxSubarray(arr, tracker);
+
+            System.out.printf("n = %-7d | maxSum = %-10d | range = [%d, %d] | time = %dns\n",
+                    n, res.maxSum, res.start, res.end, tracker.getTimeNs());
 
             tracker.toCSV(outputPath, n, "Kadane");
         }

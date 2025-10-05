@@ -1,5 +1,6 @@
 package com.example;
 
+import org.example.Kadane;
 import org.example.metrics.PerformanceTracker;
 import org.junit.jupiter.api.Test;
 
@@ -11,40 +12,42 @@ public class KadaneTest {
     void testSingleElement() {
         int[] arr = {5};
         PerformanceTracker tracker = new PerformanceTracker();
-        int result = Kadane.findMaxSum(arr, tracker);
-        assertEquals(5, result);
+        Kadane.Result result = Kadane.findMaxSubarray(arr, tracker);
+        assertEquals(5, result.maxSum);
     }
 
     @Test
     void testAllNegative() {
         int[] arr = {-3, -2, -5};
         PerformanceTracker tracker = new PerformanceTracker();
-        int result = Kadane.findMaxSum(arr, tracker);
-        assertEquals(-2, result);
+        Kadane.Result result = Kadane.findMaxSubarray(arr, tracker);
+        assertEquals(-2, result.maxSum);
     }
 
     @Test
     void testMixed() {
         int[] arr = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         PerformanceTracker tracker = new PerformanceTracker();
-        int result = Kadane.findMaxSum(arr, tracker);
-        assertEquals(6, result); // [4, -1, 2, 1]
+        Kadane.Result result = Kadane.findMaxSubarray(arr, tracker);
+        assertEquals(6, result.maxSum);
+        assertEquals(3, result.start);
+        assertEquals(6, result.end);
     }
 
     @Test
     void testAllPositive() {
         int[] arr = {1, 2, 3, 4};
         PerformanceTracker tracker = new PerformanceTracker();
-        int result = Kadane.findMaxSum(arr, tracker);
-        assertEquals(10, result);
+        Kadane.Result result = Kadane.findMaxSubarray(arr, tracker);
+        assertEquals(10, result.maxSum);
     }
 
     @Test
     void testEqualElements() {
         int[] arr = {2, 2, 2, 2};
         PerformanceTracker tracker = new PerformanceTracker();
-        int result = Kadane.findMaxSum(arr, tracker);
-        assertEquals(8, result);
+        Kadane.Result result = Kadane.findMaxSubarray(arr, tracker);
+        assertEquals(8, result.maxSum);
     }
 
     @Test
@@ -52,7 +55,7 @@ public class KadaneTest {
         int[] arr = {};
         PerformanceTracker tracker = new PerformanceTracker();
         assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
-            Kadane.findMaxSum(arr, tracker);
+            Kadane.findMaxSubarray(arr, tracker);
         });
     }
 }
