@@ -7,7 +7,7 @@
 
     <groupId>com.example</groupId>
     <artifactId>assignment2daa</artifactId>
-    <version>1.0.0</version>
+      <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>Kadane Algorithm - Assignment 2</name>
