@@ -11,7 +11,7 @@ public class Kadane {
         int currentSum = arr[0];
 
         for (int i = 1; i < arr.length; i++) {
-            tracker.incComparison();  // сравнение внутри Math.max
+            tracker.incComparison();
             currentSum = Math.max(arr[i], currentSum + arr[i]);
             maxSum = Math.max(maxSum, currentSum);
         }
